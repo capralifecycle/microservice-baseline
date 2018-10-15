@@ -1,13 +1,12 @@
 package no.capra;
 
-/**
- * Hello world!
- *
- */
-public class AppMain
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class AppMain {
+    private static final Logger log = LoggerFactory.getLogger(AppMain.class);
+
+    public static void main(String[] args) {
+        log.info("Hello World!");
     }
 }
