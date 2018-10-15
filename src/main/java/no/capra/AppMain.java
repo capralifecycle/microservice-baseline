@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 public class AppMain {
     private static final Logger log = LoggerFactory.getLogger(AppMain.class);
 
-    private static final String CONTEXT_PATH = System.getProperty("server.context.path", "/");
+    static final String CONTEXT_PATH = System.getProperty("server.context.path", "/");
     private final Integer port;
     private Server server;
 
-    private AppMain(Integer port) {
+    AppMain(Integer port) {
         this.port = port;
     }
 
@@ -25,7 +25,7 @@ public class AppMain {
         log.info("Hello World!");
     }
 
-    private void start() throws InterruptedException {
+    void start() throws InterruptedException {
         log.debug("Starting server at port {}", port);
         server = new Server(port);
         server.setHandler(getServletContextHandler());
@@ -47,6 +47,23 @@ public class AppMain {
         contextHandler.addServlet(jerseyServlet, "/*");
 
         return contextHandler;
+    }
+
+    //used by TestServer
+    void stop() {
+        try {
+            server.stop();
+        } catch (Exception e) {
+            log.warn("Error while stopping Jetty server", e);
+        }
+    }
+
+    Integer getPort() {
+        return port;
+    }
+
+    boolean isStarted() {
+        return server != null && server.isStarted();
     }
 
 }
