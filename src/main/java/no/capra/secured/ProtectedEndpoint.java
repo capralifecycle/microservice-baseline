@@ -7,15 +7,20 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-import static no.capra.secured.SecuredEndpoint.SECURED_PATH;
+import static no.capra.secured.ProtectedEndpoint.SECURED_PATH;
 
 @Path(SECURED_PATH)
-public class SecuredEndpoint {
+public class ProtectedEndpoint {
     static final String SECURED_PATH = "/secured";
+    private final String message;
+
+    public ProtectedEndpoint(String message){
+        this.message = message;
+    }
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response secured() {
-        return Response.ok("{ \"message\" : \"OK\" }").build();
+        return Response.ok("{ \"message\" : \" " +message+ " \" }").build();
     }
 }

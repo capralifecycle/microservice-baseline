@@ -32,6 +32,21 @@ and the endpoint tested using REST-assured.
 
 It is achieved by extending `AbstractEndpointTest`.
 
+### Properties
+This baseline is set up without Spring, Constretto or similar tools.
+Instead the properties are read through the class `PropertiesHelper` in the Main class.
+
+Properties are read from the following locations, in the following order:
+1. `application.properties` from `classpath` (resources/application.properties).
+2. `config_override/application.properties` file.
+
+### Dependency Injection to Endpoint Constructors
+See `JerseyConfig` for example on how the property `secured.endpoint.message`
+is passed to the `SecuredEndpoint` constructor, and registered with Jersey.
+
+It is only required to register the endpoint if you have special constructors.
+E.g. `HealthEndpoint` is registered through the line:
+`packages("no.capra");`
 
 ### Logback
 The default `logback.xml` in this repository only appends statements to `STDOUT`.

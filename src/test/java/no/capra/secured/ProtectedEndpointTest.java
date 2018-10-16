@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 import static com.jayway.restassured.RestAssured.given;
 
 @Test
-public class SecuredEndpointTest extends AbstractEndpointTest {
+public class ProtectedEndpointTest extends AbstractEndpointTest {
 
     @Test
     public void securedEndpoint_responds_401_without_authentication() {
@@ -21,7 +21,7 @@ public class SecuredEndpointTest extends AbstractEndpointTest {
         ResponseSpecification spec = builder.build();
 
         given()
-                .get(SecuredEndpoint.SECURED_PATH)
+                .get(ProtectedEndpoint.SECURED_PATH)
                 .then()
                 .log().ifError()
                 .spec(spec);
@@ -37,8 +37,8 @@ public class SecuredEndpointTest extends AbstractEndpointTest {
         given()
                 .when()
                 .auth()
-                .basic("username", "incorrectPW")
-                .get(SecuredEndpoint.SECURED_PATH)
+                .basic("usernameTest", "incorrectPW")
+                .get(ProtectedEndpoint.SECURED_PATH)
                 .then()
                 .log().ifError()
                 .spec(spec);
@@ -54,8 +54,8 @@ public class SecuredEndpointTest extends AbstractEndpointTest {
         given()
                 .when()
                 .auth()
-                .basic("username", "password")
-                .get(SecuredEndpoint.SECURED_PATH)
+                .basic("usernameTest", "passwordTest")
+                .get(ProtectedEndpoint.SECURED_PATH)
                 .then()
                 .log().ifError()
                 .spec(spec);

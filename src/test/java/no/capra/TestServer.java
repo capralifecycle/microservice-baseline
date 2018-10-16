@@ -4,21 +4,24 @@ import com.jayway.restassured.RestAssured;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Properties;
+
 public class TestServer {
     private static final Logger log = LoggerFactory.getLogger(TestServer.class);
 
     private final int port;
+    private final Properties properties;
     private AppMain main;
 
 
-    public TestServer(int port) {
+    public TestServer(int port, Properties properties) {
         this.port = port;
-
+        this.properties = properties;
     }
 
     public void start() throws Exception {
         new Thread(() -> {
-            main = new AppMain(port);
+            main = new AppMain(port, properties);
             try {
                 main.start();
             } catch (InterruptedException e) {
