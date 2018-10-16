@@ -15,9 +15,13 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Path("/health")
+import static no.capra.health.HealthEndpoint.HEALTH_PATH;
+
+@Path(HEALTH_PATH)
 public final class HealthEndpoint {
     private static Logger LOG = LoggerFactory.getLogger(HealthEndpoint.class);
+    public static final String HEALTH_PATH = "/health";
+
     private final String version;
     private final String runningSince;
     private final String mavenGroupId;

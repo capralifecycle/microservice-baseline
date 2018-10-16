@@ -1,6 +1,7 @@
 package no.capra;
 
 import no.capra.config.JerseyConfig;
+import no.capra.health.HealthEndpoint;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -22,6 +23,7 @@ public class AppMain {
     public static void main(String[] args) throws Exception {
         Integer port = Integer.parseInt(System.getProperty("server.port", "8080"));
         new AppMain(port).start();
+        log.info("Server stopped");
     }
 
     void start() throws InterruptedException {
@@ -35,7 +37,8 @@ public class AppMain {
         } catch (Exception e) {
             log.error("Error during Jetty startup. Exiting", e);
         }
-        log.info("Server started at port {}", port);
+        String healthEndpoint = "http://localhost:" + getPort() + HealthEndpoint.HEALTH_PATH;
+        log.info("Server started at port {}. Health endpoint at: {}", port, healthEndpoint);
         server.join();
     }
 
@@ -52,7 +55,6 @@ public class AppMain {
     void stop() {
         try {
             server.stop();
-            log.info("Server stopped");
         } catch (Exception e) {
             log.warn("Error while stopping Jetty server", e);
         }
