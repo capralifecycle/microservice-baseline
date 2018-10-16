@@ -1,7 +1,10 @@
 package no.capra;
 
+import no.capra.config.BasicAuthSecurityHandler;
 import no.capra.config.JerseyConfig;
+import no.capra.config.JsonJettyErrorHandler;
 import no.capra.health.HealthEndpoint;
+import org.eclipse.jetty.security.SecurityHandler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -45,8 +48,18 @@ public class AppMain {
     private ServletContextHandler getServletContextHandler() {
         ServletContextHandler contextHandler = new ServletContextHandler();
         contextHandler.setContextPath(CONTEXT_PATH);
+
+        // Basic Authentication
+        SecurityHandler basicAuthSecurityHandler = BasicAuthSecurityHandler
+                .getBasicAuthSecurityHandler("username", "password", "realm");
+        contextHandler.setSecurityHandler(basicAuthSecurityHandler);
+
+        // Add Jersey servlet to the Jetty context
         ServletHolder jerseyServlet = new ServletHolder(new ServletContainer(new JerseyConfig()));
         contextHandler.addServlet(jerseyServlet, "/*");
+
+        // Error responses as application/json with proper charset
+        contextHandler.setErrorHandler(new JsonJettyErrorHandler());
 
         return contextHandler;
     }
@@ -67,5 +80,6 @@ public class AppMain {
     boolean isStarted() {
         return server != null && server.isStarted();
     }
+
 
 }
