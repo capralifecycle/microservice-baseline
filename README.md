@@ -30,3 +30,40 @@ Example response:
 `HealthEndpointTest.java` showcases how a reusable `TestServer` is started,
 and the endpoint tested using REST-assured.
 
+It is achieved by extending `AbstractEndpointTest`.
+
+
+### Logback
+The default `logback.xml` in this repository only appends statements to `STDOUT`.
+This is intended, and covers the two main use cases:
+* Running locally, and in IDE
+* Running in [ECS](https://aws.amazon.com/ecs/) 
+with the [awslogs Log Driver](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html)
+
+If you wish to run the application with logging to file, you should use a properly set up file appender:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+    <property name="LOG_DIR" value="logs/"/>
+    <property name="appName" value="app"/>
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${appName}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${appName}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>250MB</totalSizeCap>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="org.eclipse.jetty" level="WARN"/>
+    <logger name="no.capra" level="INFO"/>
+    <root level="info">
+        <appender-ref ref="logfile"/>
+    </root>
+</configuration>
+```

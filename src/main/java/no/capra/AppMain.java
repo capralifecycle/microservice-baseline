@@ -22,7 +22,6 @@ public class AppMain {
     public static void main(String[] args) throws Exception {
         Integer port = Integer.parseInt(System.getProperty("server.port", "8080"));
         new AppMain(port).start();
-        log.info("Hello World!");
     }
 
     void start() throws InterruptedException {
@@ -53,6 +52,7 @@ public class AppMain {
     void stop() {
         try {
             server.stop();
+            log.info("Server stopped");
         } catch (Exception e) {
             log.warn("Error while stopping Jetty server", e);
         }
