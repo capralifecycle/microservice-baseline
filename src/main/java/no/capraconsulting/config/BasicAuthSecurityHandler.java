@@ -1,4 +1,4 @@
-package no.capra.config;
+package no.capraconsulting.config;
 
 import org.eclipse.jetty.security.*;
 import org.eclipse.jetty.security.authentication.BasicAuthenticator;

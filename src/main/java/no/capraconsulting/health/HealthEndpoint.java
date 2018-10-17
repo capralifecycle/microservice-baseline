@@ -1,4 +1,4 @@
-package no.capra.health;
+package no.capraconsulting.health;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static no.capra.health.HealthEndpoint.HEALTH_PATH;
+import static no.capraconsulting.health.HealthEndpoint.HEALTH_PATH;
 
 @Path(HEALTH_PATH)
 public final class HealthEndpoint {
@@ -28,7 +28,7 @@ public final class HealthEndpoint {
     private final String mavenArtifactId;
 
     public HealthEndpoint() {
-        this.mavenGroupId = "no.capra";
+        this.mavenGroupId = "no.capraconsulting";
         this.mavenArtifactId = "microservice-baseline";
         this.version = this.getVersion();
         this.runningSince = this.getRunningSince();
@@ -66,4 +66,5 @@ public final class HealthEndpoint {
 
         return "(DEV VERSION)";
     }
+
 }

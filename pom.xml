@@ -10,7 +10,7 @@
 
   <!-- REPLACE-ME -->
   <!-- Set desired groupId, artifactId and description -->
-  <groupId>no.capra</groupId>
+  <groupId>no.capraconsulting</groupId>
   <artifactId>microservice-baseline</artifactId>
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -172,7 +172,7 @@
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
                     <!-- REPLACE-ME -->
-                    <Main-Class>no.capra.AppMain</Main-Class>
+                    <Main-Class>no.capraconsulting.AppMain</Main-Class>
                   </manifestEntries>
                 </transformer>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>

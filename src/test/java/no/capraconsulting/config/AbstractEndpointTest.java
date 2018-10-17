@@ -1,6 +1,6 @@
-package no.capra.config;
+package no.capraconsulting.config;
 
-import no.capra.TestServer;
+import no.capraconsulting.TestServer;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 

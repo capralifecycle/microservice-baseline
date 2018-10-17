@@ -51,7 +51,7 @@ See `JerseyConfig` for example on how the property `secured.endpoint.message`
 is passed to the `SecuredEndpoint` constructor, and registered with Jersey.
 
 It is only required to register the endpoint if you have special constructors.
-E.g. `HealthEndpoint` is registered through the line: `packages("no.capra");`
+E.g. `HealthEndpoint` is registered through the line: `packages("no.capraconsulting");`
 
 ### Logback
 
@@ -86,7 +86,7 @@ properly set up file appender:
     </encoder>
   </appender>
   <logger name="org.eclipse.jetty" level="WARN"/>
-  <logger name="no.capra" level="INFO"/>
+  <logger name="no.capraconsulting" level="INFO"/>
   <root level="info">
     <appender-ref ref="logfile"/>
   </root>

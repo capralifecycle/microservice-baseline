@@ -1,6 +1,6 @@
-package no.capra.config;
+package no.capraconsulting.config;
 
-import no.capra.secured.ProtectedEndpoint;
+import no.capraconsulting.secured.ProtectedEndpoint;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import java.util.Properties;
@@ -8,7 +8,7 @@ import java.util.Properties;
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig(Properties properties) {
         this.register(createProtectedEndpoint(properties));
-        packages("no.capra");
+        packages("no.capraconsulting");
     }
 
     private static ProtectedEndpoint createProtectedEndpoint(Properties properties) {

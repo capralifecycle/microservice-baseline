@@ -1,4 +1,4 @@
-package no.capra;
+package no.capraconsulting;
 
 
 import org.testng.annotations.Test;
