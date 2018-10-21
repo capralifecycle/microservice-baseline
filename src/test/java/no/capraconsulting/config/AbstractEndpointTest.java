@@ -14,7 +14,7 @@ public abstract class AbstractEndpointTest {
     private static int port;
     private static final Random random = new Random(System.currentTimeMillis());
 
-    @BeforeSuite(alwaysRun = true)
+    @BeforeSuite(alwaysRun = true, timeOut = 10000L)
     public void startTestServer() throws Exception {
         port = findAvailableTcpPort();
         testServer = new TestServer(port, PropertiesHelper.getProperties());

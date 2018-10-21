@@ -46,7 +46,32 @@ public class PropertiesHelper {
         return properties;
     }
 
+    public static String getRequiredStringProperty(final Properties properties, String propertyKey) throws IllegalStateException {
+        String result = getStringProperty(properties, propertyKey, null);
+        return checkRequiredProperty(propertyKey, result);
+    }
 
+    public static Integer getRequiredIntProperty(final Properties properties, String propertyKey) throws IllegalStateException {
+        Integer result = getIntProperty(properties, propertyKey, null);
+        return checkRequiredProperty(propertyKey, result);
+    }
+
+    public static Long getRequiredLongProperty(final Properties properties, String propertyKey) throws IllegalStateException {
+        Long result = getLongProperty(properties, propertyKey, null);
+        return checkRequiredProperty(propertyKey, result);
+    }
+
+    public static Boolean getRequiredBooleanProperty(final Properties properties, String propertyKey) throws IllegalStateException {
+        Boolean result = getBooleanProperty(properties, propertyKey, null);
+        return checkRequiredProperty(propertyKey, result);
+    }
+
+    private static <T> T checkRequiredProperty(String propertyKey, T result) {
+        if (result == null) {
+            throw new IllegalStateException(String.format("Property '%s' not found.", propertyKey));
+        }
+        return result;
+    }
 
     public static String getStringProperty(final Properties properties, String propertyKey, String defaultValue) {
         String property = System.getProperty(propertyKey);
