@@ -96,11 +96,7 @@ public class PropertiesHelper {
         }
         return Long.valueOf(property);
     }
-
-    public static void setLongProperty(Properties properties, String propertyKey, long value) {
-        properties.setProperty(propertyKey, String.valueOf(value));
-    }
-
+    
     public static Boolean getBooleanProperty(final Properties properties, String propertyKey, Boolean defaultValue) {
         String property = getStringProperty(properties, propertyKey, null);
         if (property == null) {
