@@ -19,17 +19,32 @@ public class PropertiesHelper {
 
     public static Properties getProperties() {
         Properties properties = new Properties();
-        properties.putAll(getPropertiesFromClasspath("application.properties"));
+        properties.putAll(getPropertiesFromClasspathFile("application.properties"));
+        properties.putAll(getPropertiesFromOptionalClasspathFile("application-test.properties"));
         properties.putAll(getPropertiesFromFile(new File("config_override/application.properties")));
         return properties;
     }
 
-    private static Properties getPropertiesFromClasspath(String filename) {
+    static Properties getPropertiesFromClasspathFile(String filename) {
         Properties properties = new Properties();
         try {
             properties.load(PropertiesHelper.class.getClassLoader().getResourceAsStream(filename));
-        } catch (NullPointerException | IOException e) {
-            log.debug("{} not found on classpath.", filename);
+        } catch (NullPointerException e) {
+            throw new RuntimeException(filename + " not found on classpath.", e);
+        } catch (IOException e) {
+            throw new RuntimeException("IOException while reading " + filename + " from classpath.", e);
+        }
+        return properties;
+    }
+
+    private static Properties getPropertiesFromOptionalClasspathFile(String filename) {
+        Properties properties = new Properties();
+        try {
+            properties.load(PropertiesHelper.class.getClassLoader().getResourceAsStream(filename));
+        } catch (NullPointerException e) {
+            return properties;
+        } catch (IOException e) {
+            throw new RuntimeException("IOException while reading " + filename + " from classpath.", e);
         }
         return properties;
     }
@@ -96,7 +111,7 @@ public class PropertiesHelper {
         }
         return Long.valueOf(property);
     }
-    
+
     public static Boolean getBooleanProperty(final Properties properties, String propertyKey, Boolean defaultValue) {
         String property = getStringProperty(properties, propertyKey, null);
         if (property == null) {

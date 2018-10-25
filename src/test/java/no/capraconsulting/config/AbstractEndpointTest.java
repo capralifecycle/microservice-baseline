@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeSuite;
 import javax.net.ServerSocketFactory;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.util.Properties;
 import java.util.Random;
 
 public abstract class AbstractEndpointTest {
@@ -17,13 +18,20 @@ public abstract class AbstractEndpointTest {
     @BeforeSuite(alwaysRun = true, timeOut = 10000L)
     public void startTestServer() throws Exception {
         port = findAvailableTcpPort();
-        testServer = new TestServer(port, PropertiesHelper.getProperties());
+        testServer = new TestServer(port, getTestServerProperties());
         testServer.start();
     }
 
     @AfterSuite(alwaysRun = true)
     public void stop() {
         testServer.stop();
+    }
+
+    private static Properties getTestServerProperties() {
+        Properties properties = new Properties();
+        properties.putAll(PropertiesHelper.getPropertiesFromClasspathFile("application.properties"));
+        properties.putAll(PropertiesHelper.getPropertiesFromClasspathFile("application-test.properties"));
+        return properties;
     }
 
     // Functionality retrieved from https://github.com/spring-projects/spring-framework/blob/master/spring-core/src/main/java/org/springframework/util/SocketUtils.java
