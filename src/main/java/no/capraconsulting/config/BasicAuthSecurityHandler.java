@@ -5,14 +5,18 @@ import org.eclipse.jetty.security.authentication.BasicAuthenticator;
 import org.eclipse.jetty.util.security.Constraint;
 import org.eclipse.jetty.util.security.Credential;
 
+import javax.ws.rs.HttpMethod;
+import javax.ws.rs.OPTIONS;
+
 public class BasicAuthSecurityHandler {
-    private BasicAuthSecurityHandler(){
+    private BasicAuthSecurityHandler() {
 
     }
+
     public static SecurityHandler getBasicAuthSecurityHandler(String username, String password, String realm) {
 
         UserStore userStore = new UserStore();
-        userStore.addUser(username, Credential.getCredential(password), new String[] {"user"});
+        userStore.addUser(username, Credential.getCredential(password), new String[]{"user"});
 
         HashLoginService hashLoginService = new HashLoginService();
         hashLoginService.setUserStore(userStore);
@@ -38,6 +42,7 @@ public class BasicAuthSecurityHandler {
 
         ConstraintMapping constraintMapping = new ConstraintMapping();
         constraintMapping.setConstraint(constraint);
+        constraintMapping.setMethodOmissions(new String[]{HttpMethod.OPTIONS});
         constraintMapping.setPathSpec("/*");
         return constraintMapping;
     }
