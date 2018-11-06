@@ -45,6 +45,17 @@
     </repository>
   </repositories>
 
+  <distributionManagement>
+    <repository>
+      <id>project-releases</id>
+      <url>INSERT-RELEASE-REPO-HERE</url>
+    </repository>
+    <snapshotRepository>
+      <id>project-snapshots</id>
+      <url>INSERT-SNAPSHOT-REPO-HERE</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <dependencies>
 
     <!-- Jetty -->
