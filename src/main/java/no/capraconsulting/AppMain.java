@@ -45,6 +45,7 @@ public class AppMain {
             server.start();
         } catch (Exception e) {
             log.error("Error during Jetty startup. Exiting", e);
+            System.exit(1);
         }
         String healthEndpoint = "http://localhost:" + getPort() + HealthEndpoint.HEALTH_PATH;
         log.info("Server started at port {}. Health endpoint at: {}", port, healthEndpoint);
