@@ -1,33 +1,35 @@
-package no.fnf.health;
+package no.capraconsulting.health;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.URL;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Properties;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-import static no.fnf.health.HealthEndpoint.HEALTH_PATH;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static no.capraconsulting.health.HealthEndpoint.HEALTH_PATH;
 
 @Path(HEALTH_PATH)
 public final class HealthEndpoint {
     private static Logger LOG = LoggerFactory.getLogger(HealthEndpoint.class);
     public static final String HEALTH_PATH = "/health";
-    private static final String MAVEN_GROUP_ID = "no.fnf";
-    private static final String MAVEN_ARTIFACT_ID = "rvr-report";
 
     private final String version;
     private final String runningSince;
+    private final String mavenGroupId;
+    private final String mavenArtifactId;
 
     public HealthEndpoint() {
+        this.mavenGroupId = "no.capraconsulting";
+        this.mavenArtifactId = "microservice-baseline";
         this.version = this.getVersion();
         this.runningSince = this.getRunningSince();
     }
@@ -36,7 +38,7 @@ public final class HealthEndpoint {
     @Produces({MediaType.APPLICATION_JSON})
     public Response healthCheck() {
         String json = "{" +
-                "\"service\":\"" + MAVEN_ARTIFACT_ID
+                "\"service\":\"" + this.mavenArtifactId
                 + "\",\"timestamp\":\"" + Instant.now().toString()
                 + "\",\"runningSince\":\"" + this.runningSince
                 + "\",\"version\":\"" + this.version
@@ -51,7 +53,7 @@ public final class HealthEndpoint {
 
     private String getVersion() {
         Properties mavenProperties = new Properties();
-        String resourcePath = "/META-INF/maven/" + MAVEN_GROUP_ID + "/" + MAVEN_ARTIFACT_ID + "/pom.properties";
+        String resourcePath = "/META-INF/maven/" + this.mavenGroupId + "/" + this.mavenArtifactId + "/pom.properties";
         URL mavenVersionResource = this.getClass().getResource(resourcePath);
         if (mavenVersionResource != null) {
             try {

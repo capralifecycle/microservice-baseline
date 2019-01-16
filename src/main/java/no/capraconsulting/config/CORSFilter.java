@@ -1,5 +1,6 @@
-package no.fnf.config;
+package no.capraconsulting.config;
 
+import no.capraconsulting.AppMain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,9 +23,9 @@ public class CORSFilter implements ContainerResponseFilter {
     private final String allowCredentials;
     private final String maxAge;
 
-    CORSFilter(String allowOrigin, String allowHeaders,
-               String allowMethods, String allowCredentials,
-               String maxAge) {
+    public CORSFilter(String allowOrigin, String allowHeaders,
+                      String allowMethods, String allowCredentials,
+                      String maxAge) {
         this.allowOrigin = allowOrigin;
         this.allowHeaders = allowHeaders;
         this.allowMethods = allowMethods;
