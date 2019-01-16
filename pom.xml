@@ -2,10 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- REPLACE-ME -->
-  <!-- Set desired groupId, artifactId and description -->
-  <groupId>no.capraconsulting</groupId>
-  <artifactId>microservice-baseline</artifactId>
+  <groupId>no.fnf</groupId>
+  <artifactId>rvr-report</artifactId>
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -17,11 +15,11 @@
 
 
   <name>${project.artifactId}</name>
-  <description>CALS Micro Service</description>
+  <description>Report application for Restverdiregningen</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jdk.version>1.8</jdk.version>
+    <jdk.version>11</jdk.version>
     <excluded.test.groups></excluded.test.groups>
 
     <jetty.version>9.4.14.v20181114</jetty.version>
@@ -47,12 +45,12 @@
 
   <distributionManagement>
     <repository>
-      <id>project-releases</id>
-      <url>INSERT-RELEASE-REPO-HERE</url>
+      <id>fnf-releases</id>
+      <url>https://mvnrepo.capraconsulting.no/content/repositories/fnf-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>project-snapshots</id>
-      <url>INSERT-SNAPSHOT-REPO-HERE</url>
+      <id>fnf-snapshots</id>
+      <url>https://mvnrepo.capraconsulting.no/content/repositories/fnf-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
@@ -114,6 +112,23 @@
       <artifactId>logback-classic</artifactId>
       <version>${logback.version}</version>
       <scope>runtime</scope>
+    </dependency>
+
+    <!--Explicit dependencies that have been removed in newer JDKs-->
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-core</artifactId>
+      <version>2.3.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.1</version>
     </dependency>
 
     <!-- TEST Dependencies -->
@@ -183,8 +198,7 @@
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
-                    <!-- REPLACE-ME -->
-                    <Main-Class>no.capraconsulting.AppMain</Main-Class>
+                    <Main-Class>no.fnf.AppMain</Main-Class>
                   </manifestEntries>
                 </transformer>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>

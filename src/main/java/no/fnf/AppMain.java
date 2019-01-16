@@ -1,10 +1,10 @@
-package no.capraconsulting;
+package no.fnf;
 
-import no.capraconsulting.config.BasicAuthSecurityHandler;
-import no.capraconsulting.config.JerseyConfig;
-import no.capraconsulting.config.JsonJettyErrorHandler;
-import no.capraconsulting.config.PropertiesHelper;
-import no.capraconsulting.health.HealthEndpoint;
+import no.fnf.config.BasicAuthSecurityHandler;
+import no.fnf.config.JerseyConfig;
+import no.fnf.config.JsonJettyErrorHandler;
+import no.fnf.config.PropertiesHelper;
+import no.fnf.health.HealthEndpoint;
 import org.eclipse.jetty.security.SecurityHandler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;

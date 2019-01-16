@@ -1,4 +1,4 @@
-package no.capraconsulting;
+package no.fnf;
 
 
 import org.testng.annotations.Test;

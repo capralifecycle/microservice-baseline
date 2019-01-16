@@ -1,6 +1,6 @@
-package no.capraconsulting.config;
+package no.fnf.config;
 
-import no.capraconsulting.secured.ProtectedEndpoint;
+import no.fnf.secured.ProtectedEndpoint;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import java.util.Properties;
@@ -14,7 +14,7 @@ public class JerseyConfig extends ResourceConfig {
             this.register(createCORSFilter(properties));
         }
 
-        this.packages("no.capraconsulting");
+        this.packages("no.fnf");
     }
 
     private static ProtectedEndpoint createProtectedEndpoint(Properties properties) {

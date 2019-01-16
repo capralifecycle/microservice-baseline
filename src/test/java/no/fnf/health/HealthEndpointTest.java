@@ -1,8 +1,8 @@
-package no.capraconsulting.health;
+package no.fnf.health;
 
 import com.jayway.restassured.builder.ResponseSpecBuilder;
 import com.jayway.restassured.specification.ResponseSpecification;
-import no.capraconsulting.config.AbstractEndpointTest;
+import no.fnf.config.AbstractEndpointTest;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 

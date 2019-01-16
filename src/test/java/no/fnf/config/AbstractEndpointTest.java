@@ -1,6 +1,6 @@
-package no.capraconsulting.config;
+package no.fnf.config;
 
-import no.capraconsulting.TestServer;
+import no.fnf.TestServer;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 

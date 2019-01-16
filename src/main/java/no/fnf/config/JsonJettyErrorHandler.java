@@ -1,4 +1,4 @@
-package no.capraconsulting.config;
+package no.fnf.config;
 
 import org.eclipse.jetty.http.HttpStatus;
 import org.eclipse.jetty.http.MimeTypes;

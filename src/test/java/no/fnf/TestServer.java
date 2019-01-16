@@ -1,4 +1,4 @@
-package no.capraconsulting;
+package no.fnf;
 
 import com.jayway.restassured.RestAssured;
 import org.slf4j.Logger;

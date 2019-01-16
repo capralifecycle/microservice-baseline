@@ -1,4 +1,4 @@
-package no.capraconsulting.secured;
+package no.fnf.secured;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -6,8 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
-import static no.capraconsulting.secured.ProtectedEndpoint.SECURED_PATH;
+import static no.fnf.secured.ProtectedEndpoint.SECURED_PATH;
 
 @Path(SECURED_PATH)
 public class ProtectedEndpoint {

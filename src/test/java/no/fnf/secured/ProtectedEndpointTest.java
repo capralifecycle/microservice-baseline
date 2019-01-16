@@ -1,8 +1,8 @@
-package no.capraconsulting.secured;
+package no.fnf.secured;
 
 import com.jayway.restassured.builder.ResponseSpecBuilder;
 import com.jayway.restassured.specification.ResponseSpecification;
-import no.capraconsulting.config.AbstractEndpointTest;
+import no.fnf.config.AbstractEndpointTest;
 import org.testng.annotations.Test;
 
 import javax.ws.rs.core.MediaType;
