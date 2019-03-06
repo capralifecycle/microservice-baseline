@@ -1,19 +1,16 @@
 package no.capraconsulting.config;
 
-import no.capraconsulting.AppMain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
-import javax.ws.rs.ext.Provider;
 
 /**
  * This filter is optionally enabled and wired in {@link JerseyConfig}
  * See {@link JerseyConfig} for details about properties used to control allowed origin and headers
  */
-@Provider
 public class CORSFilter implements ContainerResponseFilter {
     private static final Logger log = LoggerFactory.getLogger(CORSFilter.class);
 
