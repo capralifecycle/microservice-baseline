@@ -3,10 +3,8 @@ package no.capraconsulting.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 public class PropertiesHelper {
@@ -28,7 +26,7 @@ public class PropertiesHelper {
     static Properties getPropertiesFromClasspathFile(String filename) {
         Properties properties = new Properties();
         try {
-            properties.load(PropertiesHelper.class.getClassLoader().getResourceAsStream(filename));
+            properties.load(new InputStreamReader(PropertiesHelper.class.getClassLoader().getResourceAsStream(filename), StandardCharsets.UTF_8));
         } catch (NullPointerException e) {
             throw new RuntimeException(filename + " not found on classpath.", e);
         } catch (IOException e) {
@@ -40,7 +38,7 @@ public class PropertiesHelper {
     private static Properties getPropertiesFromOptionalClasspathFile(String filename) {
         Properties properties = new Properties();
         try {
-            properties.load(PropertiesHelper.class.getClassLoader().getResourceAsStream(filename));
+            properties.load(new InputStreamReader(PropertiesHelper.class.getClassLoader().getResourceAsStream(filename), StandardCharsets.UTF_8));
         } catch (NullPointerException e) {
             return properties;
         } catch (IOException e) {
@@ -52,7 +50,7 @@ public class PropertiesHelper {
     private static Properties getPropertiesFromFile(File file) {
         Properties properties = new Properties();
         if (file.exists()) {
-            try (InputStream input = new FileInputStream(file)) {
+            try (InputStreamReader input = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
                 properties.load(input);
             } catch (Exception e) {
                 log.warn("Failed to load properties from {}", file, e);
