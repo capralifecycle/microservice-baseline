@@ -14,7 +14,7 @@ buildConfig([
 
     insideMaven {
       stage('Build and test Java project') {
-        sh "mvn -s $MAVEN_SETTINGS -B package"
+        sh "mvn -s \$MAVEN_SETTINGS -B package"
       }
     }
   }
