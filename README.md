@@ -1,5 +1,7 @@
 # microservice-baseline
 
+[![Build Status](https://jenkins.capra.tv/buildStatus/icon?job=cals-microservice-baseline/master)](https://jenkins.capra.tv/job/cals-microservice-baseline/job/master/)
+
 This project serves as a baseline when you wish to begin a
 new micro service exposing HTTP endpoints.
 
