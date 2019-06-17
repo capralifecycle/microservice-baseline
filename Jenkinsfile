@@ -29,14 +29,6 @@ buildConfig([
 
         archiveArtifacts artifacts: 'dependency-updates.txt,plugin-updates.txt', fingerprint: true
       }
-
-      stage('Show available updates') {
-        echo 'Available dependency updates'
-        sh 'cat dependency-updates.txt'
-
-        echo 'Available plugin updates:'
-        sh 'cat plugin-updates.txt'
-      }
     }
   }
 }
