@@ -14,12 +14,4 @@
     <!-- Ignore org.postgresql:postgresql:42.2.5.jre7 and alike -->
     <ignoreVersion type="regex">(?i).*jre\d+</ignoreVersion>
   </ignoreVersions>
-  <rules>
-    <rule groupId="com.graphql-java" artifactId="graphql-java">
-      <ignoreVersions>
-        <!-- Avoid updates like 10.0 -> 2018-10-08T21-25-58-ac9d5c6 -->
-        <ignoreVersion type="regex">^\d\d\d\d-\d\d-\d\dT.*$</ignoreVersion>
-      </ignoreVersions>
-    </rule>
-  </rules>
 </ruleset>
