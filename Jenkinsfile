@@ -12,7 +12,7 @@ buildConfig([
   dockerNode {
     checkout scm
 
-    insideMaven {
+    insideMaven([ version: '3-jdk-11-alpine' ]) {
       stage('Build and test Java project') {
         sh "mvn -s \$MAVEN_SETTINGS -B package"
       }
