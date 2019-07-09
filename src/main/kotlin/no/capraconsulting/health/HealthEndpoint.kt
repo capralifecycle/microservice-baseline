@@ -13,32 +13,21 @@ import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
+private val LOG = LoggerFactory.getLogger(HealthEndpoint::class.java)
+
 @Path(HEALTH_PATH)
 class HealthEndpoint {
 
-    private val version: String
-    private val runningSince: String
-    private val mavenGroupId: String
-    private val mavenArtifactId: String
-
-    init {
-        this.mavenGroupId = "no.capraconsulting"
-        this.mavenArtifactId = "microservice-baseline"
-        this.version = this.getVersion()
-        this.runningSince = this.getRunningSince()
-    }
+    private val version: String = getVersion()
+    private val runningSince: String = getRunningSince()
+    private val mavenGroupId: String = "no.capraconsulting"
+    private val mavenArtifactId: String = "microservice-baseline"
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    fun healthCheck(): Response {
-        val json = ("{" +
-                "\"service\":\"" + this.mavenArtifactId
-                + "\",\"timestamp\":\"" + Instant.now().toString()
-                + "\",\"runningSince\":\"" + this.runningSince
-                + "\",\"version\":\"" + this.version
-                + "\"}")
-        return Response.ok(json).build()
-    }
+    fun healthCheck(): Response = Response
+        .ok("""{"service":"$mavenArtifactId","timestamp":"${Instant.now()}","runningSince":"$runningSince","version":"$version"}""")
+        .build()
 
     private fun getRunningSince(): String {
         val uptimeInMillis = ManagementFactory.getRuntimeMXBean().uptime
@@ -47,11 +36,11 @@ class HealthEndpoint {
 
     private fun getVersion(): String {
         val mavenProperties = Properties()
-        val resourcePath = "/META-INF/maven/" + this.mavenGroupId + "/" + this.mavenArtifactId + "/pom.properties"
-        val mavenVersionResource = this.javaClass.getResource(resourcePath)
+        val resourcePath = "/META-INF/maven/$mavenGroupId/$mavenArtifactId/pom.properties"
+        val mavenVersionResource = javaClass.getResource(resourcePath)
         if (mavenVersionResource != null) {
             try {
-                mavenProperties.load(mavenVersionResource.openStream())
+                mavenVersionResource.openStream().use(mavenProperties::load)
                 return mavenProperties.getProperty("version", "missing version info in $resourcePath")
             } catch (var5: IOException) {
                 LOG.warn("Problem reading version resource from classpath: ", var5)
@@ -63,7 +52,6 @@ class HealthEndpoint {
     }
 
     companion object {
-        private val LOG = LoggerFactory.getLogger(HealthEndpoint::class.java)
         const val HEALTH_PATH = "/health"
     }
 

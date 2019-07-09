@@ -12,9 +12,7 @@ class ProtectedEndpoint(private val message: String) {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    fun secured(): Response {
-        return Response.ok("{ \"message\" : \" $message \" }").build()
-    }
+    fun secured(): Response = Response.ok("""{"message": "$message"}""").build()
 
     companion object {
         internal const val SECURED_PATH = "/secured"
