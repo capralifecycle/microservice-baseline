@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 // See https://github.com/capralifecycle/jenkins-pipeline-library
-@Library('cals') _
+@Library('cals@sonarcloud') _ // TODO: Remove branch override
 
 buildConfig([
   slack: [
@@ -29,6 +29,13 @@ buildConfig([
 
         archiveArtifacts artifacts: 'dependency-updates.txt,plugin-updates.txt', fingerprint: true
       }
+    }
+
+    insideSonarScanner {
+      analyzeSonarCloudForMaven([
+        'sonar.organization': 'capraconsulting',
+        'sonar.projectKey': 'capraconsulting_microservice-baseline',
+      ])
     }
   }
 }
