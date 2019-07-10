@@ -155,6 +155,32 @@
 
   <build>
     <plugins>
+      <!--
+      Support multiple source directories for dual Kotlin and Java compile.
+      This ensure both src/main/java and src/main/kotlin will work as sourceDirectory.
+      If Java support is not needed this can be removed and
+      specifying kotlin in sourceDirectory only.
+      -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.basedir}/src/main/kotlin</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <!-- Dual Kotlin and Java compile -->
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
