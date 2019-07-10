@@ -45,7 +45,6 @@ class HealthEndpoint {
             } catch (var5: IOException) {
                 LOG.warn("Problem reading version resource from classpath: ", var5)
             }
-
         }
 
         return "(DEV VERSION)"
@@ -54,5 +53,4 @@ class HealthEndpoint {
     companion object {
         const val HEALTH_PATH = "/health"
     }
-
 }

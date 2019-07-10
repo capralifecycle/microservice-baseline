@@ -68,7 +68,7 @@ class AppMain(val port: Int, private val properties: Properties) {
         return contextHandler
     }
 
-    //used by TestServer
+    // used by TestServer
     fun stop() {
         try {
             server?.stop()

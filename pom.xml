@@ -245,6 +245,21 @@
         </executions>
       </plugin>
 
+      <!-- ktlint for code style -->
+      <plugin>
+        <groupId>com.github.gantsign.maven</groupId>
+        <artifactId>ktlint-maven-plugin</artifactId>
+        <version>1.1.1</version>
+        <executions>
+          <execution>
+            <id>check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <!--
       Target versions for updates.
       See https://confluence.capraconsulting.no/display/CALS/Keeping+dependencies+up-to-date
