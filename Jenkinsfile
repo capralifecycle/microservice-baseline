@@ -14,7 +14,7 @@ buildConfig([
 
     insideMaven([ version: '3-jdk-11-alpine' ]) {
       stage('Build and test Java project') {
-        sh "mvn -s \$MAVEN_SETTINGS -B package"
+        sh "mvn -s \$MAVEN_SETTINGS -B verify"
       }
 
       stage('Generate report for available updates') {
