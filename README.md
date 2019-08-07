@@ -1,6 +1,6 @@
 # microservice-baseline
 
-[![Build Status](https://jenkins.capra.tv/buildStatus/icon?job=cals-microservice-baseline/master)](https://jenkins.capra.tv/job/cals-microservice-baseline/job/master/)
+[![Build Status](https://jenkins.capra.tv/buildStatus/icon?job=cals-baselines/microservice-baseline/master)](https://jenkins.capra.tv/job/cals-baselines/job/microservice-baseline/job/master/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=capraconsulting_microservice-baseline&metric=alert_status)](https://sonarcloud.io/dashboard?id=capraconsulting_microservice-baseline)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=capraconsulting_microservice-baseline&metric=coverage)](https://sonarcloud.io/dashboard?id=capraconsulting_microservice-baseline)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=capraconsulting_microservice-baseline&metric=sqale_index)](https://sonarcloud.io/dashboard?id=capraconsulting_microservice-baseline)
