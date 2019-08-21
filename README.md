@@ -10,12 +10,12 @@ new micro service exposing HTTP endpoints.
 
 It is set up with the following dependencies/frameworks:
 
+* JDK12
 * [Jetty Web Server](https://www.eclipse.org/jetty/)
 * [Jersey JAX-RS](https://jersey.github.io/)
 * [TestNG](https://github.com/cbeust/testng)
 * [REST-assured: Java DSL for easy testing of REST services](
   https://github.com/rest-assured/rest-assured)
-* [Maven Shade Plugin](https://maven.apache.org/plugins/maven-shade-plugin/)
 
 ### Health endpoint
 
