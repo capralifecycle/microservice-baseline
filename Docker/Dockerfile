@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk12:jdk-12.0.2_10-alpine
+FROM adoptopenjdk/openjdk12:jre-12.0.2_10-alpine
 RUN apk --no-cache upgrade \
   && apk --no-cache add \
     groff \
