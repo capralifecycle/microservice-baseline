@@ -1,8 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
-APP=app.jar
-JAVA_PARAMS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+# The module to start.
+# Replace this with your own modulename (from module-info)
+MODULE="no.capraconsulting.microservice.baseline/no.capraconsulting.AppMain"
+JAVA_PARAMS="-XshowSettings:vm"
 
 echo " --- RUNNING $(basename "$0") $(date -u "+%Y-%m-%d %H:%M:%S Z") --- "
 set -x
@@ -20,4 +22,4 @@ if [ "$AWS_PARAMETER_STORE_ENABLED" = "true" ]; then
     fi
 fi
 
-/usr/bin/java $JAVA_PARAMS $JAVA_PARAMS_OVERRIDE -jar $APP
+/sbin/su-exec $USER:1000 $JAVA_HOME/bin/java $JAVA_PARAMS $JAVA_PARAMS_OVERRIDE -p lib  -m $MODULE
