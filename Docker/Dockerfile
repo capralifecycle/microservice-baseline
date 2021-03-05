@@ -2,13 +2,13 @@ FROM openjdk:8-jre-alpine
 RUN apk --no-cache upgrade \
   && apk --no-cache add \
     groff \
-    python2 \
+    python3 \
     bash \
   && apk --no-cache add --virtual build-dep \
-      python2-dev \
-      py2-pip \
-  && pip install awscli \
-  && pip install boto3 \
+      python3-dev \
+      py3-pip \
+  && pip3 install awscli \
+  && pip3 install boto3 \
   && apk del build-dep \
   && rm -rf ~/.cache/pip
 
